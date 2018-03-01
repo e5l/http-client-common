@@ -1,0 +1,14 @@
+
+apply plugin: 'konan'
+
+konan.targets = ["iphone", "iphone_sim"]
+
+konanArtifacts {
+    program('app') {
+        srcDir 'src/main/kotlin'
+
+        libraries {
+            allLibrariesFrom project(":native")
+        }
+    }
+}
