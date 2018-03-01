@@ -1,0 +1,33 @@
+
+buildscript {
+    repositories {
+        maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
+        maven { url "https://maven.google.com" }
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.moowork.gradle:gradle-node-plugin:$gradle_node_version"
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
+        classpath "com.android.tools.build:gradle:$gradle_android_version"
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://maven.google.com" }
+        jcenter()
+    }
+
+    tasks.withType(Test) {
+        testLogging {
+            showStandardStreams = true
+            events "passed", "failed"
+        }
+    }
+}
