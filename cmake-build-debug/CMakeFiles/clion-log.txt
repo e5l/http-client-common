@@ -1,0 +1,4 @@
+"/Users/leonid/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.3870.21/CLion 2018.1 EAP.app/Contents/bin/cmake/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -D CMAKE_Kotlin_COMPILER=/Users/leonid/.konan/kotlin-native-macos-0.6/bin/konanc -D CMAKE_Kotlin_CINTEROP=/Users/leonid/.konan/kotlin-native-macos-0.6/bin/cinterop -G "CodeBlocks - Unix Makefiles" /Users/leonid/Documents/Kotlin/http-client-common
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/leonid/Documents/Kotlin/http-client-common/cmake-build-debug

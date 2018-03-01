@@ -1,0 +1,42 @@
+apply plugin: 'konan'
+
+konan.targets = ["iphone", "iphone_sim", "macbook"]
+
+konanArtifacts {
+    library('native') {
+        enableMultiplatform true
+
+        FileTree commonSrc = fileTree(dir: 'src')
+        commonSrc.exclude '**/macbook.kt'
+        commonSrc.exclude '**/iphone.kt'
+
+        srcFiles commonSrc
+
+        target('macbook') {
+            srcFiles 'src/main/kotlin/macbook.kt'
+        }
+
+        target('iphone') {
+            srcFiles 'src/main/kotlin/iphone.kt'
+        }
+
+        target('iphone_sim') {
+            srcFiles 'src/main/kotlin/iphone.kt'
+        }
+    }
+
+    program('native-test') {
+        srcDir 'src/test/kotlin'
+        commonSourceSet 'test'
+        libraries {
+            artifact 'native'
+        }
+        extraOpts '-tr'
+    }
+}
+
+dependencies {
+    expectedBy project(':common')
+}
+
+task test(dependsOn: run)
