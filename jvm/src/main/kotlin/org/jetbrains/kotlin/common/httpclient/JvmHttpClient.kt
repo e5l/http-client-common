@@ -25,7 +25,7 @@ actual class HttpClient actual constructor() : Closeable {
         return HttpResponseBuilder(request).apply {
             statusCode = response.status.value
             response.headers.entries().forEach { (key, values) -> headers[key] = values }
-            body = response.receiveContent().readChannel().toByteArray()
+            body = response.content.toByteArray()
         }.build()
     }
 
