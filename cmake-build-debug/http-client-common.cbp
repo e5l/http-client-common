@@ -48,40 +48,49 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/Builders.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/org/jetbrains/kotlin/common/httpclient/Builders.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/HttpClient.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/org/jetbrains/kotlin/common/httpclient/HttpClient.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/HttpRequest.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/org/jetbrains/kotlin/common/httpclient/HttpRequest.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/HttpResponse.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/org/jetbrains/kotlin/common/httpclient/HttpResponse.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/http/HttpMethod.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/org/jetbrains/kotlin/common/httpclient/http/HttpMethod.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/http/Url.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/org/jetbrains/kotlin/common/httpclient/http/Url.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/utils.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/common/src/main/kotlin/org/jetbrains/kotlin/common/httpclient/utils.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/native/src/main/kotlin/HttpClient.kt">
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/native/src/main/kotlin/NativeHttpClient.kt">
+			<Option target="http-client-common"/>
+		</Unit>
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/native/src/main/kotlin/NativeUtils.kt">
 			<Option target="http-client-common"/>
 		</Unit>
 		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/native/src/main/kotlin/macbook.kt">
 			<Option target="http-client-common"/>
 		</Unit>
-		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/native/src/main/kotlin/utils.kt">
-			<Option target="http-client-common"/>
-		</Unit>
 		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/KotlinCMakeModule/CMakeDetermineKotlinCompiler.cmake">
+			<Option virtualFolder="CMake Files\KotlinCMakeModule\"/>
+		</Unit>
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/KotlinCMakeModule/CMakeKotlinCompiler.cmake.in">
+			<Option virtualFolder="CMake Files\KotlinCMakeModule\"/>
+		</Unit>
 		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/KotlinCMakeModule/CMakeKotlinInformation.cmake">
+			<Option virtualFolder="CMake Files\KotlinCMakeModule\"/>
+		</Unit>
+		<Unit filename="/Users/leonid/Documents/Kotlin/http-client-common/KotlinCMakeModule/CMakeTestKotlinCompiler.cmake">
 			<Option virtualFolder="CMake Files\KotlinCMakeModule\"/>
 		</Unit>
 	</Project>

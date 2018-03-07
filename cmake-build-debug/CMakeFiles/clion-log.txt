@@ -1,4 +1,10 @@
-"/Users/leonid/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.3870.21/CLion 2018.1 EAP.app/Contents/bin/cmake/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -D CMAKE_Kotlin_COMPILER=/Users/leonid/.konan/kotlin-native-macos-0.6/bin/konanc -D CMAKE_Kotlin_CINTEROP=/Users/leonid/.konan/kotlin-native-macos-0.6/bin/cinterop -G "CodeBlocks - Unix Makefiles" /Users/leonid/Documents/Kotlin/http-client-common
+"/Users/leonid/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.3986.16/CLion 2018.1 EAP.app/Contents/bin/cmake/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -D CMAKE_Kotlin_COMPILER=/Users/leonid/.konan/kotlin-native-macos-0.6.1/bin/konanc -D CMAKE_Kotlin_CINTEROP=/Users/leonid/.konan/kotlin-native-macos-0.6.1/bin/cinterop -G "CodeBlocks - Unix Makefiles" /Users/leonid/Documents/Kotlin/http-client-common
 -- Configuring done
 -- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_Kotlin_CINTEROP
+
+
 -- Build files have been written to: /Users/leonid/Documents/Kotlin/http-client-common/cmake-build-debug

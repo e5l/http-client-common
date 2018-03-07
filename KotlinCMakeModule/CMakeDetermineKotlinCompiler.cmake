@@ -1,12 +1,12 @@
 if (NOT CMAKE_Kotlin_COMPILER)
     #TODO determine Kotlin compiler in not hardcoded way
     set(Kotlin_BIN_PATH
-            $ENV{HOME}/.konan/kotlin-native-macos-0.3/bin
-            $ENV{HOME}/.konan/kotlin-native-linux-0.3/bin
-            $ENV{HOME}/.konan/kotlin-native-macos-0.3.1/bin
-            $ENV{HOME}/.konan/kotlin-native-linux-0.3.1/bin
-            $ENV{HOME}/.konan/kotlin-native-macos-0.3.2/bin
-            $ENV{HOME}/.konan/kotlin-native-linux-0.3.2/bin
+            $ENV{HOME}/.konan/kotlin-native-macos-0.6/bin
+            $ENV{HOME}/.konan/kotlin-native-linux-0.6/bin
+            $ENV{HOME}/.konan/kotlin-native-macos-0.6.1/bin
+            $ENV{HOME}/.konan/kotlin-native-linux-0.6.1/bin
+            $ENV{HOME}/.konan/kotlin-native-macos-0.6.2/bin
+            $ENV{HOME}/.konan/kotlin-native-linux-0.6.2/bin
             )
 
 
