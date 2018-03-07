@@ -3,5 +3,9 @@ package org.jetbrains.kotlin.common.httpclient
 /**
  * Execute [HttpRequest] from [block]
  */
-fun HttpClient.request(builder: HttpRequestBuilder.() -> Unit, block: (HttpResponse) -> Unit) =
-        request(HttpRequestBuilder().apply(builder).build(), block)
+suspend fun HttpClient.request(block: HttpRequestBuilder.() -> Unit): HttpResponse =
+        request(HttpRequestBuilder().apply(block).build())
+
+suspend fun HttpClient.request(host: String): HttpResponse = request(HttpRequestBuilder().apply {
+    url.host = host
+}.build())

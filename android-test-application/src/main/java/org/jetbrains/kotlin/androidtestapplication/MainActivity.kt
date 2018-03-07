@@ -8,6 +8,8 @@ import kotlinx.coroutines.experimental.*
 import org.jetbrains.kotlin.common.httpclient.*
 
 class MainActivity : AppCompatActivity() {
+    val client = HttpClient()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,18 +18,10 @@ class MainActivity : AppCompatActivity() {
         val responseView = findViewById<TextView>(R.id.contentView)
 
         findViewById<Button>(R.id.getButton).setOnClickListener {
-            launch(CommonPool) {
-                val client = HttpClient()
-                client.request({
-                    with(url) {
-                        host = urlField.text.toString()
-                    }
-                }) { response ->
-                    val text = Utils.decode(response.body, "windows-1251")
-                    launch(UI) {
-                        responseView.text = text
-                    }
-                    client.close()
+            async(CommonPool) {
+                val response = client.request(urlField.text.toString())
+                launch(UI) {
+                    responseView.text = Utils.decode(response.body, "windows-1251")
                 }
             }
         }

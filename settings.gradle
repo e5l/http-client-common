@@ -3,7 +3,6 @@ rootProject.name = 'http-client-common'
 include 'common'
 include 'jvm'
 include 'native'
-include 'browser.js'
 
 include 'ios-test-application'
 include 'android-test-application'

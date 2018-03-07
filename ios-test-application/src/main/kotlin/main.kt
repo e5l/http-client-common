@@ -50,23 +50,30 @@ class ViewController : UIViewController {
 
     fun performRequest(endpoint: String) {
         val HEADER = "---==="
-        HttpClient().use { client ->
-            client.request({
+        val client = HttpClient()
+
+        runSuspend {
+            client.request {
                 with(url) {
                     protocol = "https"
                     host = endpoint
                     port = 443
                 }
-            }) { response ->
-                println("$HEADER request: ${response.request.url}")
-                println("$HEADER response status: ${response.statusCode}")
-                println("$HEADER headers:")
-                response.headers.forEach { (key, values) ->
-                    println("  -$key: ${values.joinToString()}")
-                }
-                println("$HEADER body:")
-                println(Utils.decode(response.body, "windows-1251"))
             }
+        }.then { response ->
+            println("$HEADER request: ${response.request.url}")
+            println("$HEADER response status: ${response.statusCode}")
+            println("$HEADER headers:")
+            response.headers.forEach { (key, values) ->
+                println("  -$key: ${values.joinToString()}")
+            }
+            println("$HEADER body:")
+            val body = Utils.decode(response.body, "windows-1251")
+
+            println(body)
+            label.text = body
+
+            client.close()
         }
     }
 }
