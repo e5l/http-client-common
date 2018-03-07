@@ -1,0 +1,91 @@
+apply plugin: 'kotlin-platform-js'
+apply plugin: 'com.moowork.node'
+
+dependencies {
+    expectedBy project(":common")
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutines_version"
+
+    testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
+[compileKotlin2Js, compileTestKotlin2Js]*.configure {
+    kotlinOptions {
+        sourceMap = true
+        sourceMapEmbedSources = 'always'
+        moduleKind = 'umd'
+    }
+}
+
+node {
+    download = true
+}
+
+task populateNodeModules(type: Copy, dependsOn: compileKotlin2Js) {
+    from compileKotlin2Js.destinationDir
+
+    configurations.testCompile.each {
+        from zipTree(it.absolutePath).matching { include '*.js' }
+    }
+
+    into "${buildDir}/node_modules"
+}
+
+task installDependenciesMochaChrome(type: NpmTask) {
+    args = ['install',  'mocha', 'mocha-headless-chrome', "kotlin", "kotlin-test", "kotlinx-coroutines-core", '--no-save']
+}
+
+task prepareMochaChrome(dependsOn: [compileTestKotlin2Js, populateNodeModules, installDependenciesMochaChrome])
+
+prepareMochaChrome.doLast {
+    file("$buildDir/test-page.html").text = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mocha Tests</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="$projectDir/node_modules/mocha/mocha.css">
+</head>
+<body>
+<div id="mocha"></div>
+<script src="$projectDir/node_modules/mocha/mocha.js"></script>
+<script>mocha.setup({
+    ui: 'bdd',
+    timeout: 60000
+});</script>
+<script src="$projectDir/node_modules/kotlin/kotlin.js"></script>
+<script src="$projectDir/node_modules/kotlin-test/kotlin-test.js"></script>
+<script src="$projectDir/node_modules/kotlinx-coroutines-core/kotlinx-coroutines-core.js"></script>
+<script src="$compileKotlin2Js.outputFile"></script>
+<script src="$compileTestKotlin2Js.outputFile"></script>
+<script>mocha.run();</script>
+</body>
+</html>
+"""
+}
+
+task testMochaChrome(type: NodeTask, dependsOn: prepareMochaChrome) {
+    script = file('node_modules/mocha-headless-chrome/bin/start')
+    args = [compileTestKotlin2Js.outputFile, '--file', "$buildDir/test-page.html"]
+}
+
+testClasses.dependsOn populateNodeModules
+
+test.dependsOn testMochaChrome
+
+// clean
+task deleteNodeModules(type: Delete) {
+    delete 'node_modules'
+    delete 'package-lock.json'
+}
+
+clean.dependsOn deleteNodeModules
+

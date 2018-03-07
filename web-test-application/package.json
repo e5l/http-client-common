@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "node-watch": "^0.5.7",
+    "source-map-loader": "^0.2.3",
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10",
+    "webpack-merge": "^4.1.2"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.2",
+    "uglifyjs-webpack-plugin": "^1.2.2",
+    "webpack-dev-server": "^3.1.0"
+  },
+  "scripts": {
+    "devServer": "webpack-dev-server --open --config webpack.dev.js",
+    "gradleBuild": "../gradlew devBuild --continuous",
+    "serve": "run-p gradleBuild devServer",
+    "dist": "webpack"
+  }
+}

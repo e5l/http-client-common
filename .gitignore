@@ -1,10 +1,15 @@
 .DS_Store
+
 .gradle
+.externalNativeBuild
+local.properties
+
 .idea/*
 *.iml
-local.properties
-.externalNativeBuild
 
 build
 out
+
 node_modules
+*.log
+package-lock.json
