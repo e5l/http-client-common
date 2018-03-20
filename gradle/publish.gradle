@@ -1,0 +1,30 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+if (project.name != 'native') {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifactId = "http-client-${project.name}"
+                from components.java
+            }
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    if (project.name == 'native') {
+        publications = ['http-client-native', 'ios_arm64', 'ios_x64']
+    } else {
+        publications = ['maven']
+    }
+    pkg {
+        userOrg = 'e5l'
+        repo = 'http-client-common'
+        name = "http-client-${project.name}"
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/e5l/http-client-common'
+    }
+}

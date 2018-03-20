@@ -7,8 +7,4 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"
 }
 
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}
+kotlin.experimental.coroutines 'enable'

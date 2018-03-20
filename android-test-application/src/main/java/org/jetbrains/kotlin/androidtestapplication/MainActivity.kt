@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import kotlinx.coroutines.experimental.android.*
 import kotlinx.coroutines.experimental.*
-import org.jetbrains.kotlin.common.httpclient.*
+import io.ktor.common.client.*
 
 class MainActivity : AppCompatActivity() {
     val client = HttpClient()

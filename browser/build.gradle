@@ -11,22 +11,12 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
 }
 
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}
-
 [compileKotlin2Js, compileTestKotlin2Js]*.configure {
     kotlinOptions {
         sourceMap = true
         sourceMapEmbedSources = 'always'
         moduleKind = 'umd'
     }
-}
-
-node {
-    download = true
 }
 
 task populateNodeModules(type: Copy, dependsOn: compileKotlin2Js) {
@@ -40,7 +30,7 @@ task populateNodeModules(type: Copy, dependsOn: compileKotlin2Js) {
 }
 
 task installDependenciesMochaChrome(type: NpmTask) {
-    args = ['install',  'mocha', 'mocha-headless-chrome', "kotlin", "kotlin-test", "kotlinx-coroutines-core", '--no-save']
+    args = ['install', 'mocha', 'mocha-headless-chrome', "kotlin", "kotlin-test", 'kotlinx-coroutines-core', '--no-save']
 }
 
 task prepareMochaChrome(dependsOn: [compileTestKotlin2Js, populateNodeModules, installDependenciesMochaChrome])
@@ -87,5 +77,6 @@ task deleteNodeModules(type: Delete) {
     delete 'package-lock.json'
 }
 
-clean.dependsOn deleteNodeModules
+kotlin.experimental.coroutines 'enable'
 
+clean.dependsOn deleteNodeModules

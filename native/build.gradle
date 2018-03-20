@@ -1,38 +1,25 @@
 apply plugin: 'konan'
 
-konan.targets = ["iphone", "iphone_sim", "macbook"]
+konan.targets = ["iphone", "iphone_sim"]
 
 konanArtifacts {
-    library('native') {
+    library('http-client-native') {
         enableMultiplatform true
-
-        FileTree commonSrc = fileTree(dir: 'src')
-        commonSrc.exclude '**/macbook.kt'
-        commonSrc.exclude '**/iphone.kt'
-
-        srcFiles commonSrc
-
-        target('macbook') {
-            srcFiles 'src/main/kotlin/macbook.kt'
-        }
-
-        target('iphone') {
-            srcFiles 'src/main/kotlin/iphone.kt'
-        }
-
-        target('iphone_sim') {
-            srcFiles 'src/main/kotlin/iphone.kt'
-        }
     }
-
+/* publishing workaround
     program('native-test') {
         srcDir 'src/test/kotlin'
         commonSourceSet 'test'
         libraries {
-            artifact 'native'
+            artifact 'http-client-native'
         }
         extraOpts '-tr'
     }
+*/
+}
+
+afterEvaluate {
+    apply from: project.file('../gradle/publish.gradle')
 }
 
 dependencies {

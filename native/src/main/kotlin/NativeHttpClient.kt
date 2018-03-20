@@ -1,4 +1,4 @@
-package org.jetbrains.kotlin.common.httpclient
+package io.ktor.common.client
 
 import kotlinx.cinterop.*
 import platform.Foundation.*

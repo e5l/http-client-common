@@ -3,10 +3,6 @@ apply plugin: "kotlin2js"
 apply plugin: "kotlin-dce-js"
 apply plugin: "com.moowork.node"
 
-node {
-    download = true
-}
-
 repositories {
     maven { url "http://dl.bintray.com/kotlin/kotlin-dev" }
     maven { url "http://dl.bintray.com/kotlinx/kotlinx" }
@@ -28,11 +24,7 @@ compileKotlin2Js {
     }
 }
 
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
-}
+kotlin.experimental.coroutines 'enable'
 
 task copyStatic(type: Copy) {
     from "$rootDir/src/main/web"

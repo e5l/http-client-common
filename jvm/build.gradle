@@ -1,8 +1,8 @@
 apply plugin: 'kotlin-platform-jvm'
 
 repositories {
-    maven { url "https://dl.bintray.com/kotlin/ktor" }
-    maven { url "https://dl.bintray.com/kotlin/kotlinx" }
+    maven { url 'https://dl.bintray.com/kotlin/ktor' }
+    maven { url 'https://dl.bintray.com/kotlin/kotlinx' }
 }
 
 dependencies {
@@ -11,19 +11,15 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "io.ktor:ktor-client-cio:$ktor_version"
 
-    testCompile "junit:junit:4.12"
+    testCompile 'junit:junit:4.12'
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 }
 
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}
+kotlin.experimental.coroutines 'enable'
 
 tasks.withType(compileKotlin.getClass()) {
     kotlinOptions {
-        jvmTarget = "1.6"
+        jvmTarget = '1.6'
     }
 }

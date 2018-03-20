@@ -1,7 +1,7 @@
 import kotlinx.cinterop.*
 import platform.Foundation.*
 import platform.UIKit.*
-import org.jetbrains.kotlin.common.httpclient.*
+import io.ktor.common.client.*
 
 fun main(args: Array<String>) {
     memScoped {
