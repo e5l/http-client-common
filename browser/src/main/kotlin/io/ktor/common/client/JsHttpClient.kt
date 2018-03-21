@@ -20,10 +20,8 @@ actual class HttpClient actual constructor() : Closeable {
     }
 }
 
-private suspend fun Response.receiveBody(): ByteArray = suspendCancellableCoroutine { continuation ->
-    arrayBuffer().then {
-        continuation.resume(Int8Array(it).asDynamic() as ByteArray)
-    }
+private suspend fun Response.receiveBody(): String = suspendCancellableCoroutine { continuation ->
+    text().then { continuation.resume(it) }
 }
 
 private suspend fun fetch(request: HttpRequest): Response = suspendCancellableCoroutine { continuation ->
@@ -33,13 +31,11 @@ private suspend fun fetch(request: HttpRequest): Response = suspendCancellableCo
     }
 
     val rawRequest = js("({})")
-    rawRequest["method"] = request.method
+    rawRequest["method"] = request.method.value
     rawRequest["headers"] = headers
-    if (!request.body.contentEquals(EmptyByteArray)) {
-        rawRequest["body"] = request.body
-    }
+    request.body?.let { rawRequest["body"] = it }
 
-    window.fetch(request.url.toString(), rawRequest as RequestInit).then { continuation.resume(it) }
+    window.fetch(request.url.build(), rawRequest as RequestInit).then { continuation.resume(it) }
 }
 
 private fun Headers.entries(): Map<String, List<String>> {

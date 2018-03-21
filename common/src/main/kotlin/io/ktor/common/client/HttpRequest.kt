@@ -2,20 +2,18 @@ package io.ktor.common.client
 
 import io.ktor.common.client.http.*
 
-internal val EmptyByteArray = ByteArray(0)
-
 class HttpRequest(
-        val url: Url,
+        val url: URLBuilder,
         val method: HttpMethod,
         val headers: Map<String, List<String>>,
-        val body: ByteArray
+        val body: String?
 )
 
 class HttpRequestBuilder {
-    val url: UrlBuilder = UrlBuilder()
-    var method: HttpMethod = HttpMethod.GET
-    var body: ByteArray = EmptyByteArray
+    val url: URLBuilder = URLBuilder()
+    var method: HttpMethod = HttpMethod.Get
+    var body: String? = null
     var headers: MutableMap<String, List<String>> = mutableMapOf()
 
-    fun build(): HttpRequest = HttpRequest(url.build(), method, headers, body)
+    fun build(): HttpRequest = HttpRequest(url, method, headers, body)
 }

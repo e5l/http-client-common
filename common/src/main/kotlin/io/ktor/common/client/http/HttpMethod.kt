@@ -1,8 +1,28 @@
 package io.ktor.common.client.http
 
-enum class HttpMethod {
-    GET,
-    POST,
-    PUT,
-    OPTIONS
+data class HttpMethod(val value: String) {
+    companion object {
+        val Get = HttpMethod("GET")
+        val Post = HttpMethod("POST")
+        val Put = HttpMethod("PUT")
+        val Patch = HttpMethod("PATCH")
+        val Delete = HttpMethod("DELETE")
+        val Head = HttpMethod("HEAD")
+        val Options = HttpMethod("OPTIONS")
+
+        fun parse(method: String): HttpMethod {
+            return when (method) {
+                Get.value -> Get
+                Post.value -> Post
+                Put.value -> Put
+                Patch.value -> Patch
+                Delete.value -> Delete
+                Head.value -> Head
+                Options.value -> Options
+                else -> HttpMethod(method)
+            }
+        }
+
+        val DefaultMethods = listOf(Get, Post, Put, Patch, Delete, Head, Options)
+    }
 }

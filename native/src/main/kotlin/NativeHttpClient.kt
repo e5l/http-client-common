@@ -29,7 +29,8 @@ actual class HttpClient actual constructor() : Closeable {
                     headersKeys.forEach { key ->
                         headers[key.uncheckedCast()] = listOf(headersDict.objectForKey(key).uncheckedCast())
                     }
-                    body = receivedData.uncheckedCast()
+
+                    body = receivedData.decode(NSWindowsCP1251StringEncoding)
                 }.build()
 
                 continuation.resume(response)
@@ -42,7 +43,16 @@ actual class HttpClient actual constructor() : Closeable {
                 delegateQueue = NSOperationQueue.mainQueue()
         )
 
-        session.dataTaskWithURL(NSURL(URLString = request.url.toString())).resume()
+
+        val url = NSURL(URLString = request.url.build())
+        val nativeRequest = NSMutableURLRequest.requestWithURL(url)
+        nativeRequest.setHTTPMethod(request.method.value)
+
+        request.body?.let {
+            nativeRequest.setHTTPBody(it.uncheckedCast<NSString>().dataUsingEncoding(NSWindowsCP1251StringEncoding))
+        }
+
+        session.dataTaskWithRequest(nativeRequest).resume()
     }
 
     override fun close() {
@@ -52,3 +62,9 @@ actual class HttpClient actual constructor() : Closeable {
 private fun NSArray.toArray(): Array<ObjCObject> = Array(count.toInt(), { it ->
     objectAtIndex(it.toLong())!!
 })
+
+private fun NSData.decode(encoding: NSStringEncoding): String {
+    val nsStringMeta: NSObjectMeta = NSString
+    val result = nsStringMeta.alloc()!!.reinterpret<NSString>()
+    return result.initWithData(uncheckedCast(), encoding)!!
+}

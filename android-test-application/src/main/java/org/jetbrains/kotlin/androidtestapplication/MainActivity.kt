@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             async(CommonPool) {
                 val response = client.request(urlField.text.toString())
                 launch(UI) {
-                    responseView.text = Utils.decode(response.body, "windows-1251")
+                    responseView.text = response.body
                 }
             }
         }

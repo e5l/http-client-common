@@ -2,6 +2,7 @@ import kotlinx.cinterop.*
 import platform.Foundation.*
 import platform.UIKit.*
 import io.ktor.common.client.*
+import io.ktor.common.client.http.*
 
 fun main(args: Array<String>) {
     memScoped {
@@ -55,7 +56,7 @@ class ViewController : UIViewController {
         runSuspend {
             client.request {
                 with(url) {
-                    protocol = "https"
+                    protocol = URLProtocol.HTTPS
                     host = endpoint
                     port = 443
                 }
@@ -68,10 +69,8 @@ class ViewController : UIViewController {
                 println("  -$key: ${values.joinToString()}")
             }
             println("$HEADER body:")
-            val body = Utils.decode(response.body, "windows-1251")
-
-            println(body)
-            label.text = body
+            println(response.body)
+            label.text = response.body
 
             client.close()
         }

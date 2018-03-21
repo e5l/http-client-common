@@ -1,5 +1,7 @@
 package io.ktor.common.client
 
+import io.ktor.common.client.http.*
+
 object RequestTests {
     private val HEADER = "---==="
 
@@ -8,9 +10,9 @@ object RequestTests {
         val client = HttpClient()
         val response = client.request {
             url.apply {
-                protocol = "https"
+                protocol = URLProtocol.HTTPS
                 host = "cors-anywhere.herokuapp.com"
-                path = "/google.ru"
+                encodedPath = "/google.ru"
                 port = 443
             }
         }
@@ -21,6 +23,6 @@ object RequestTests {
             println("  -$key: ${values.joinToString()}")
         }
         println("$HEADER body:")
-        println(Utils.decode(response.body, "windows-1251").take(300))
+        println(response.body.take(300))
     }
 }

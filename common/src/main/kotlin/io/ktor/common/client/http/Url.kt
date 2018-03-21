@@ -1,25 +1,64 @@
 package io.ktor.common.client.http
 
-class Url(
-        val protocol: String,
-        val host: String,
-        val port: Int,
-        val path: String,
-        val queryParameters: Map<String, String>
+class URLBuilder(
+        var protocol: URLProtocol = URLProtocol.HTTP,
+        var host: String = "localhost",
+        var port: Int = protocol.defaultPort,
+        var user: String? = null,
+        var password: String? = null,
+        var encodedPath: String = "/",
+        val parameters: ParametersBuilder = mutableMapOf(),
+        var fragment: String = "",
+        var trailingQuery: Boolean = false
 ) {
-    override fun toString(): String = "$protocol://$host:$port$path${queryParameters.asStringParameters()}"
+    fun path(vararg components: String) {
+        path(components.asList())
+    }
+
+    fun path(components: List<String>) {
+        encodedPath = components.joinToString("/", prefix = "/") { encodeURLPart(it) }
+    }
+
+    private fun <A : Appendable> appendTo(out: A): A {
+        out.append(protocol.name)
+        out.append("://")
+        user?.let { usr ->
+            out.append(encodeURLPart(usr))
+            password?.let { pwd ->
+                out.append(":")
+                out.append(encodeURLPart(pwd))
+            }
+            out.append("@")
+        }
+        out.append(host)
+
+        if (port != protocol.defaultPort) {
+            out.append(":")
+            out.append(port.toString())
+        }
+
+        if (!encodedPath.startsWith("/")) {
+            out.append('/')
+        }
+
+        out.append(encodedPath)
+
+        val queryParameters = parameters
+        if (!queryParameters.isEmpty() || trailingQuery) {
+            out.append("?")
+        }
+
+        queryParameters.formUrlEncodeTo(out)
+
+        if (fragment.isNotEmpty()) {
+            out.append('#')
+            out.append(encodeURLPart(fragment))
+        }
+
+        return out
+    }
+
+    fun build(): String = appendTo(StringBuilder(256)).toString()
+
+    companion object
 }
-
-class UrlBuilder {
-    var protocol: String = "http"
-    var host: String = "0.0.0.0"
-    var port: Int = 80
-
-    var path: String = "/"
-    var queryParameters: MutableMap<String, String> = mutableMapOf()
-
-    fun build(): Url = Url(protocol, host, port, path, queryParameters)
-}
-
-private fun Map<String, String>.asStringParameters(): String =
-        if (isEmpty()) "" else entries.joinToString(separator = "&") { (key, value) -> "$key=$value" }

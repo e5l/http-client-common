@@ -1,5 +1,6 @@
 package io.ktor.common.client
 
+import io.ktor.common.client.http.*
 import kotlinx.coroutines.experimental.*
 
 fun main(args: Array<String>) {
@@ -7,13 +8,13 @@ fun main(args: Array<String>) {
     promise {
         client.request {
             url.apply {
-                protocol = "https"
+                protocol = URLProtocol.HTTPS
                 host = "cors-anywhere.herokuapp.com"
-                path = "/google.ru"
+                encodedPath = "/google.ru"
                 port = 443
             }
         }
     }.then {
-        println(Utils.decode(it.body, "windows-1251"))
+        println(it.body)
     }
 }
