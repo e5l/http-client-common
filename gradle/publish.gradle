@@ -10,6 +10,15 @@ if (project.name != 'native') {
             }
         }
     }
+} else {
+    def localMavenRepo = "file://${new File(System.properties['user.home'] as String)}/.m2-kotlin-native"
+    publishing {
+        repositories {
+            maven {
+                url = localMavenRepo
+            }
+        }
+    }
 }
 
 bintray {
