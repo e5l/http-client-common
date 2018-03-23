@@ -3,7 +3,7 @@ apply plugin: 'konan'
 konan.targets = ["ios_arm64", "ios_x64"]
 
 konanArtifacts {
-    library('http-client-native') {
+    library('http_client_native') {
         enableMultiplatform true
     }
 /* publishing workaround
