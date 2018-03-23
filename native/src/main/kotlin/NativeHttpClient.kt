@@ -44,14 +44,12 @@ actual class HttpClient actual constructor() : Closeable {
         )
 
 
-        val url = NSURL(URLString = request.url.build())
+        val URLString = request.url.build()
+        val url = NSURL(URLString = URLString)
         val nativeRequest = NSMutableURLRequest.requestWithURL(url)
+
         nativeRequest.setHTTPMethod(request.method.value)
-
-        request.body?.let {
-            nativeRequest.setHTTPBody(it.uncheckedCast<NSString>().dataUsingEncoding(NSWindowsCP1251StringEncoding))
-        }
-
+        request.body?.let { nativeRequest.setHTTPBody(it.encode()) }
         session.dataTaskWithRequest(nativeRequest).resume()
     }
 
@@ -62,6 +60,10 @@ actual class HttpClient actual constructor() : Closeable {
 private fun NSArray.toArray(): Array<ObjCObject> = Array(count.toInt(), { it ->
     objectAtIndex(it.toLong())!!
 })
+
+private fun String.encode(): NSData =
+        interpretObjCPointer<NSString>(CreateNSStringFromKString(this))
+                .dataUsingEncoding(NSWindowsCP1251StringEncoding)!!
 
 private fun NSData.decode(encoding: NSStringEncoding): String {
     val nsStringMeta: NSObjectMeta = NSString
