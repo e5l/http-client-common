@@ -6,6 +6,7 @@ import android.widget.*
 import kotlinx.coroutines.experimental.android.*
 import kotlinx.coroutines.experimental.*
 import io.ktor.common.client.*
+import io.ktor.common.client.http.*
 
 class MainActivity : AppCompatActivity() {
     val client = HttpClient()
@@ -19,7 +20,12 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.getButton).setOnClickListener {
             async(CommonPool) {
-                val response = client.request(urlField.text.toString())
+                val response = client.request {
+                    url.encodedPath = "/"
+                    url.protocol = URLProtocol.HTTPS
+                    url.port = 443
+                    url.host = urlField.text.toString()
+                }
                 launch(UI) {
                     responseView.text = response.body
                 }
