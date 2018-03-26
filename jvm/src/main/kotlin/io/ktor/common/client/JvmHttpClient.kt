@@ -15,7 +15,7 @@ actual class HttpClient actual constructor() : Closeable {
     })
 
     actual suspend fun request(request: HttpRequest): HttpResponse {
-        val contentType = request.headers["ContentType"]?.let { ContentType.parse(it.first()) }
+        val contentType = request.headers[HttpHeaders.ContentType]?.let { ContentType.parse(it.first()) }
 
         val response = client.request<io.ktor.client.response.HttpResponse> {
             method = HttpMethod.parse(request.method.value)

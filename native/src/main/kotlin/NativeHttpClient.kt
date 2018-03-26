@@ -43,10 +43,15 @@ actual class HttpClient actual constructor() : Closeable {
                 delegateQueue = NSOperationQueue.mainQueue()
         )
 
-
         val URLString = request.url.build()
         val url = NSURL(URLString = URLString)
         val nativeRequest = NSMutableURLRequest.requestWithURL(url)
+
+        request.headers.forEach { (key, values) ->
+            values.forEach {
+                nativeRequest.setValue(it, key)
+            }
+        }
 
         nativeRequest.setHTTPMethod(request.method.value)
         request.body?.let { nativeRequest.setHTTPBody(it.encode()) }
