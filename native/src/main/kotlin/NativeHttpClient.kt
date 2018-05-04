@@ -20,14 +20,13 @@ actual class HttpClient actual constructor() : Closeable {
                     return
                 }
 
-                val responseData = rawResponse.reinterpret<NSHTTPURLResponse>()
-                val headersDict = responseData.allHeaderFields
-                val headersKeys = headersDict.allKeys.toArray()
+                val responseData = rawResponse as NSHTTPURLResponse
+                val headersDict = responseData.allHeaderFields as Map<String, String>
 
                 val response = HttpResponseBuilder(request).apply {
                     statusCode = responseData.statusCode.toInt()
-                    headersKeys.forEach { key ->
-                        headers[key.uncheckedCast()] = listOf(headersDict.objectForKey(key).uncheckedCast())
+                    headersDict.mapKeys { it ->
+                        headers[it.key] = listOf(it.value)
                     }
 
                     body = receivedData.decode(NSWindowsCP1251StringEncoding)
@@ -44,7 +43,7 @@ actual class HttpClient actual constructor() : Closeable {
         )
 
         val URLString = request.url.build()
-        val url = NSURL(URLString = URLString)
+        val url = NSURL(string = URLString)
         val nativeRequest = NSMutableURLRequest.requestWithURL(url)
 
         request.headers.forEach { (key, values) ->
@@ -62,16 +61,6 @@ actual class HttpClient actual constructor() : Closeable {
     }
 }
 
-private fun NSArray.toArray(): Array<ObjCObject> = Array(count.toInt(), { it ->
-    objectAtIndex(it.toLong())!!
-})
+private fun String.encode(): NSData = (this as NSString).dataUsingEncoding(NSWindowsCP1251StringEncoding)!!
 
-private fun String.encode(): NSData =
-        interpretObjCPointer<NSString>(CreateNSStringFromKString(this))
-                .dataUsingEncoding(NSWindowsCP1251StringEncoding)!!
-
-private fun NSData.decode(encoding: NSStringEncoding): String {
-    val nsStringMeta: NSObjectMeta = NSString
-    val result = nsStringMeta.alloc()!!.reinterpret<NSString>()
-    return result.initWithData(uncheckedCast(), encoding)!!
-}
+private fun NSData.decode(encoding: NSStringEncoding) = NSString().initWithData(this, encoding)!!
