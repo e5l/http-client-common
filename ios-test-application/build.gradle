@@ -1,6 +1,6 @@
 apply plugin: 'konan'
 
-konan.targets = ["iphone", "iphone_sim"]
+konan.targets = ["ios_arm64", "ios_x64"]
 
 konanArtifacts {
     program('app') {
