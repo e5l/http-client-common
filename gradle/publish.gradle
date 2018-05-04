@@ -1,23 +1,21 @@
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-publishing {
-    if (project.name == 'native') {
-        repositories {
-            maven {
-                url = 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies/common-libs'
+if (project.name != 'native') {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifactId = "http-client-${project.name}"
+                from components.java
             }
         }
     }
-
-    publications {
-        ios_arm64(MavenPublication) {
-            artifactId = "http_client_native" //"http-client-${project.name}"
-        }
-        maven(MavenPublication) {
-            artifactId = "http-client-${project.name}"
-            if (project.name != 'native') {
-                // from components.java
+} else {
+    def localMavenRepo = "file://${new File(System.properties['user.home'] as String)}/.m2-kotlin-native"
+    publishing {
+        repositories {
+            maven {
+                url = localMavenRepo
             }
         }
     }
@@ -27,14 +25,14 @@ bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
     key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
     if (project.name == 'native') {
-        publications = ['maven'] //ios_arm64
+        publications = ['http-client-native', 'ios_arm64', 'ios_x64']
     } else {
         publications = ['maven']
     }
     pkg {
-        userOrg = 'jetbrains'
-        repo = 'kotlin-native-dependencies'
-        name = "common-libs"
+        userOrg = 'e5l'
+        repo = 'http-client-common'
+        name = "http-client-${project.name}"
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/e5l/http-client-common'
     }
