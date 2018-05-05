@@ -1,4 +1,5 @@
 rootProject.name = 'http-client-common'
+enableFeaturePreview('GRADLE_METADATA')
 
 include 'common'
 include 'jvm'
@@ -6,5 +7,7 @@ include 'native'
 include 'browser'
 
 include 'ios-test-application'
-include 'android-test-application'
+if (System.getenv('ANDROID_HOME')) {
+    include 'android-test-application'
+}
 include 'web-test-application'

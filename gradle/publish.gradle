@@ -9,28 +9,11 @@ publishing {
             }
         }
     }
-
-    publications {
-        ios_arm64(MavenPublication) {
-            artifactId = "http_client_native" //"http-client-${project.name}"
-        }
-        maven(MavenPublication) {
-            artifactId = "http-client-${project.name}"
-            if (project.name != 'native') {
-                // from components.java
-            }
-        }
-    }
 }
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
     key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-    if (project.name == 'native') {
-        publications = ['maven'] //ios_arm64
-    } else {
-        publications = ['maven']
-    }
     pkg {
         userOrg = 'jetbrains'
         repo = 'kotlin-native-dependencies'
@@ -38,4 +21,8 @@ bintray {
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/e5l/http-client-common'
     }
+}
+
+bintrayUpload.doFirst{
+    publications = project.publishing.publications
 }
