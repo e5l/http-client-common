@@ -7,7 +7,7 @@ import io.ktor.common.client.http.*
 fun main(args: Array<String>) {
     memScoped {
         val argc = args.size + 1
-        val argv = (arrayOf("konan") + args).map { it.cstr.getPointer(memScope) }.toCValues()
+        val argv = (arrayOf("konan") + args).map { it.cstr.ptr }.toCValues()
 
         autoreleasepool {
             UIApplicationMain(argc, argv, null, NSStringFromClass(AppDelegate))
@@ -15,10 +15,8 @@ fun main(args: Array<String>) {
     }
 }
 
-class AppDelegate : UIResponder(), UIApplicationDelegateProtocol {
+class AppDelegate @OverrideInit constructor() : UIResponder(), UIApplicationDelegateProtocol {
     companion object : UIResponderMeta(), UIApplicationDelegateProtocolMeta {}
-
-    override fun init() = initBy(AppDelegate())
 
     private var _window: UIWindow? = null
     override fun window() = _window
@@ -31,9 +29,8 @@ class AppDelegate : UIResponder(), UIApplicationDelegateProtocol {
 @ExportObjCClass
 class ViewController : UIViewController {
 
-    constructor(aDecoder: NSCoder) : super(aDecoder)
-
-    override fun initWithCoder(aDecoder: NSCoder) = initBy(ViewController(aDecoder))
+    @OverrideInit
+    constructor(coder: NSCoder) : super(coder)
 
     @ObjCOutlet
     lateinit var label: UILabel

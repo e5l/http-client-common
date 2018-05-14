@@ -63,4 +63,4 @@ actual class HttpClient actual constructor() : Closeable {
 
 private fun String.encode(): NSData = (this as NSString).dataUsingEncoding(NSWindowsCP1251StringEncoding)!!
 
-private fun NSData.decode(encoding: NSStringEncoding) = NSString().initWithData(this, encoding)!!
+private fun NSData.decode(encoding: NSStringEncoding) = NSString.create(this, encoding)!! as String
