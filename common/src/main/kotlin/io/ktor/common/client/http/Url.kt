@@ -60,5 +60,7 @@ class URLBuilder(
 
     fun build(): String = appendTo(StringBuilder(256)).toString()
 
+    override fun toString() = build()
+
     companion object
 }

@@ -17,7 +17,7 @@ buildscript {
 
 allprojects {
     group 'io.ktor.common.client'
-    version '0.1.1'
+    version '0.1.3'
 
     repositories {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
