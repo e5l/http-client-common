@@ -9,6 +9,13 @@ publishing {
             }
         }
     }
+    else {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+    }
 }
 
 bintray {
