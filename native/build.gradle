@@ -1,5 +1,3 @@
-apply plugin: 'konan'
-
 konan.targets = ["ios_arm64", "ios_x64"]
 
 konanArtifacts {
@@ -18,9 +16,12 @@ konanArtifacts {
 */
 }
 
+
 afterEvaluate {
-    apply from: project.file('../gradle/publish.gradle')
+    apply from: rootProject.file('gradle/publish.gradle')
 }
+
+apply from: rootProject.file('gradle/bintray.gradle')
 
 dependencies {
     expectedBy project(':common')

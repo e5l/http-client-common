@@ -1,11 +1,10 @@
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
 
 publishing {
+    println('publishing')
     if (project.name == 'native') {
         repositories {
             maven {
-                url = 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies/common-libs'
+                url = 'https://dl.bintray.com/e5l/http-client-common'
             }
         }
     }
@@ -15,18 +14,6 @@ publishing {
                 from components.java
             }
         }
-    }
-}
-
-bintray {
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-    pkg {
-        userOrg = 'jetbrains'
-        repo = 'kotlin-native-dependencies'
-        name = "common-libs"
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/e5l/http-client-common'
     }
 }
 

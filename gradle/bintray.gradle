@@ -1,0 +1,13 @@
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+    pkg {
+        userOrg = 'e5l'
+        repo = 'http-client-common'
+        name = "http-client-${project.name}"
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/e5l/http-client-common'
+    }
+}

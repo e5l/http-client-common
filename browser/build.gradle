@@ -1,4 +1,3 @@
-apply plugin: 'kotlin-platform-js'
 apply plugin: 'com.moowork.node'
 
 dependencies {
