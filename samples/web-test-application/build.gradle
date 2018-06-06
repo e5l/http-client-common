@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+        maven { url 'https://plugins.gradle.org/m2/' }
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.moowork.gradle:gradle-node-plugin:$gradle_node_version"
+    }
+}
+apply plugin: "kotlin2js"
+apply plugin: "kotlin-dce-js"
+apply plugin: "com.moowork.node"
+
+repositories {
+    maven { url "http://dl.bintray.com/kotlin/kotlin-dev" }
+    maven { url "http://dl.bintray.com/kotlinx/kotlinx" }
+    maven { url "http://dl.bintray.com/hypnosphi/kotlin-wrappers" }
+    maven { url "https://dl.bintray.com/e5l/http-client-common" }
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    compile 'io.ktor.common.client:browser:0.1.5'
+}
+
+compileKotlin2Js {
+    kotlinOptions {
+        sourceMap = true
+        sourceMapEmbedSources = 'always'
+        moduleKind = 'umd'
+        metaInfo = false
+    }
+}
+
+kotlin.experimental.coroutines 'enable'
+
+task copyStatic(type: Copy) {
+    from "$rootDir/src/main/web"
+    into "$buildDir/web"
+}
+
+task buildBundle(type: NpmTask, dependsOn: [npmInstall, runDceKotlinJs]) {
+    args = ["run", "dist"]
+}
+
+task copyKotlinJs(type: Copy, dependsOn: compileKotlin2Js) {
+    def workDir = "$buildDir/classes/kotlin/main/"
+    from(workDir) {
+        include "*.js"
+        include "*.js.map"
+    }
+    into "$workDir/dependencies"
+}
+
+task devBuild(dependsOn: [npmInstall, copyStatic, copyKotlinJs])
+
+assemble.dependsOn buildBundle, copyStatic

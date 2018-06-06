@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
+    }
+}
+
+apply plugin: 'konan'
+
+konan.targets = ["ios_arm64", "ios_x64"]
+
+repositories {
+    maven {
+        url = 'https://dl.bintray.com/e5l/http-client-common'
+    }
+}
+
+konanArtifacts {
+    program('app') {
+        dependencies {
+            artifactapp "io.ktor.common.client:http_client_native:$http_client_version"
+        }
+    }
+
+}

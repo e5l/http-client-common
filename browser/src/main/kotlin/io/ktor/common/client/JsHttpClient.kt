@@ -1,20 +1,16 @@
 package io.ktor.common.client
 
 import kotlinx.coroutines.experimental.*
-import org.khronos.webgl.*
 import org.w3c.fetch.*
 import kotlin.browser.*
 
 actual class HttpClient actual constructor() : Closeable {
-    actual suspend fun request(request: HttpRequest): HttpResponse {
+    actual suspend fun request(request: HttpRequest): HttpResponse = HttpResponseBuilder(request).apply {
         val response = fetch(request)
-
-        return HttpResponseBuilder(request).apply {
-            statusCode = response.status.toInt()
-            headers.putAll(response.headers.entries())
-            body = response.receiveBody()
-        }.build()
-    }
+        statusCode = response.status.toInt()
+        headers.putAll(response.headers.entries())
+        body = response.receiveBody()
+    }.build()
 
     override fun close() {
     }

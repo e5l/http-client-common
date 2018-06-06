@@ -3,11 +3,5 @@ enableFeaturePreview('GRADLE_METADATA')
 
 include 'common'
 include 'jvm'
-include 'native'
+include 'ios'
 include 'browser'
-
-include 'ios-test-application'
-if (System.getenv('ANDROID_HOME')) {
-    include 'android-test-application'
-}
-include 'web-test-application'

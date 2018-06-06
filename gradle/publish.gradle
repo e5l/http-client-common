@@ -1,7 +1,6 @@
 
 publishing {
-    println('publishing')
-    if (project.name == 'native') {
+    if (project.name == 'ios') {
         repositories {
             maven {
                 url = 'https://dl.bintray.com/e5l/http-client-common'

@@ -16,19 +16,20 @@ buildscript {
 }
 
 static def platformOf(project) {
-    if (project.name.endsWith("common")) return "common"
-    if (project.name.endsWith("browser")) return "js"
-    if (project.name.endsWith("native")) return "native"
-    if (project.name.endsWith("jvm")) return "jvm"
-    return "common"
+    if (project.name.endsWith('common')) return 'common'
+    if (project.name.endsWith('browser')) return 'js'
+    if (project.name.endsWith('native')) return 'native'
+    if (project.name.endsWith('ios')) return 'native'
+    if (project.name.endsWith('jvm')) return 'jvm'
+    return 'common'
 }
 
-def libs = ['common', 'jvm', 'native', 'browser']
+def libs = ['common', 'jvm', 'ios', 'browser']
 configure(subprojects.findAll { libs.contains(it.name) }) {
     def platform = platformOf(project)
 
     group 'io.ktor.common.client'
-    version '0.1.4'
+    version '0.1.5'
 
 
     repositories {
