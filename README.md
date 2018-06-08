@@ -32,11 +32,20 @@ dependencies {
     
     // javascript
     compile 'io.ktor.common.client:browser:0.1.5'
-    
-    // native
-    compile 'io.ktor.common.client:http_client_native:0.1.5'
-    
+
     // jvm + android
     compile 'io.ktor.common.client:jvm:0.1.5'
 }
 ```
+
+and for iOS:
+```
+konanArtifacts {
+    program('app') {
+        dependencies {
+            artifactapp "io.ktor.common.client:http_client_native:0.1.5"
+        }
+    }
+}
+```
+
