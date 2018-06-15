@@ -46,6 +46,11 @@ dependencies {
 ```
 
 and for iOS:
+
+```groovy 
+// enable gradle metadata in gradle.properties
+enableFeaturePreview('GRADLE_METADATA')
+```
 ```groovy
 konanArtifacts {
     program('app') {
