@@ -25,5 +25,4 @@ konanArtifacts {
             artifactapp "io.ktor.common.client:http_client_native:$http_client_version"
         }
     }
-
 }

@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    compile 'io.ktor.common.client:browser:0.1.5'
+    compile "io.ktor.common.client:browser:$http_client_version"
 }
 
 compileKotlin2Js {

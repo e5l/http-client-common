@@ -29,8 +29,7 @@ configure(subprojects.findAll { libs.contains(it.name) }) {
     def platform = platformOf(project)
 
     group 'io.ktor.common.client'
-    version '0.1.5'
-
+    version '0.1.6'
 
     repositories {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }

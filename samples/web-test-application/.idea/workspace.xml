@@ -1,73 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="53209e23-3d56-4b1e-8d63-40e83e91a261" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../browser/src/main/kotlin/io/ktor/common/client/JsUtils.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../jvm/src/main/kotlin/io/ktor/common/client/JvmUtils.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ios-test-application/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ios-test-application/ios-test-application/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ios-test-application/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/java/org/jetbrains/kotlin/androidtestapplication/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/layout/activity_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../android-test-application/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../browser/src/main/kotlin/io/ktor/common/client/JsHttpClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../browser/src/main/kotlin/io/ktor/common/client/JsHttpClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../common/src/main/kotlin/io/ktor/common/client/utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../common/src/main/kotlin/io/ktor/common/client/utils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gradle/publish.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../gradle/publish.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application.xcodeproj/project.xcworkspace/xcuserdata/leonid.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application.xcodeproj/xcuserdata/leonid.xcuserdatad/xcschemes/ios-test-application.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application.xcodeproj/xcuserdata/leonid.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/AppDelegate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/AppDelegate.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/Base.lproj/Main.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/ViewController.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/ViewController.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/ios-test-application/main.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ios-test-application/src/main/kotlin/main.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../native/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../ios/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../native/src/main/kotlin/NativeHttpClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ios/src/main/kotlin/NativeHttpClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../native/src/main/kotlin/NativeUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ios/src/main/kotlin/NativeUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../native/src/main/kotlin/iphone.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ios/src/main/kotlin/iphone.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/src/main/js/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/src/main/kotlin/io/ktor/common/client/test.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/src/main/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/webpack.common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/webpack.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web-test-application/webpack.dev.js" beforeDir="false" />
-    </list>
+    <list default="true" id="53209e23-3d56-4b1e-8d63-40e83e91a261" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -127,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/webpack.dev.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="42">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -601,6 +535,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
@@ -914,7 +851,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528277018751" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528277155860" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -938,7 +875,7 @@
       </Profilers>
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528277018746" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528277155856" />
       </method>
     </configuration>
   </component>
@@ -952,12 +889,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528276567890</updated>
-      <workItem from="1528276569335" duration="289000" />
+      <workItem from="1528276569335" duration="468000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289000" />
+    <option name="totallyTimeSpent" value="468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1028,7 +965,7 @@
     <entry file="file://$PROJECT_DIR$/webpack.dev.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
