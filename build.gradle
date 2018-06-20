@@ -29,7 +29,7 @@ configure(subprojects.findAll { libs.contains(it.name) }) {
     def platform = platformOf(project)
 
     group 'io.ktor.common.client'
-    version '0.1.6'
+    version '0.1.11'
 
     repositories {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
@@ -38,10 +38,8 @@ configure(subprojects.findAll { libs.contains(it.name) }) {
         jcenter()
     }
 
-    if (platform == 'native') {
-        apply plugin: 'konan'
-    } else {
-        apply plugin: "kotlin-platform-$platform"
+    apply plugin: "kotlin-platform-$platform"
+    if (platform != 'native') {
         kotlin.experimental.coroutines 'enable'
     }
 
@@ -55,11 +53,8 @@ configure(subprojects.findAll { libs.contains(it.name) }) {
             events 'passed', 'failed'
         }
     }
-
 }
 
-def publish = ['common', 'jvm', 'browser']
-configure(subprojects.findAll { publish.contains(it.name) }) { project ->
-    apply from: rootProject.file('gradle/bintray.gradle')
+configure(subprojects.findAll { libs.contains(it.name) }) { project ->
     apply from: rootProject.file('gradle/publish.gradle')
 }

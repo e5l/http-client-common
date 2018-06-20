@@ -20,13 +20,14 @@ promise {
 
 ## Dependencies
 
-1. Kotlin native compiler version: 0.7.1
-2. Gradle version: 4.7
+1. Kotlin native compiler version: 0.8-dev-2494
+2. Gradle wrapper version: 4.7
+3. Coroutines version 0.23.3
 
 ### Gradle
 ```groovy
 buildscript {
-    ext.http_client_version = '0.1.6'
+    ext.http_client_version = '0.1.11'
 }
 
 repositories {
@@ -37,27 +38,23 @@ dependencies {
     // common
     compile "io.ktor.common.client:common:$http_client_version"
 
-    // javascript
+    // javascript(browser)
     compile "io.ktor.common.client:browser:$http_client_version"
 
     // jvm + android
     compile "io.ktor.common.client:jvm:$http_client_version"
+    
+    // ios
+    implementation "io.ktor.common.client:ios:$http_client_version"
 }
 ```
 
-and for iOS:
-
-```groovy 
+```groovy
 // enable gradle metadata in gradle.properties
 enableFeaturePreview('GRADLE_METADATA')
 ```
-```groovy
-konanArtifacts {
-    program('app') {
-        dependencies {
-            artifactapp "io.ktor.common.client:http_client_native:$http_client_version"
-        }
-    }
-}
-```
 
+## Samples
+1. [ios](samples/ios-test-application)
+2. [android](samples/android-test-application)
+3. [js(browser)](samples/web-test-application)

@@ -1,31 +1,13 @@
 
-konan.targets = ["ios_arm64", "ios_x64"]
-
-konanArtifacts {
-    library('http_client_native') {
-        enableMultiplatform true
-    }
-/* publishing workaround
-    program('native-test') {
-        srcDir 'src/test/kotlin'
-        commonSourceSet 'test'
-        libraries {
-            artifact 'http-client-native'
+sourceSets {
+    main {
+        component {
+            target 'ios_arm64', 'ios_x64'
+            outputKinds = [KLIBRARY]
         }
-        extraOpts '-tr'
     }
-*/
 }
-
-
-afterEvaluate {
-    apply from: rootProject.file('gradle/publish.gradle')
-}
-
-apply from: rootProject.file('gradle/bintray.gradle')
 
 dependencies {
     expectedBy project(':common')
 }
-
-task test(dependsOn: run)

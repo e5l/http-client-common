@@ -4,11 +4,9 @@ import android.os.*
 import android.support.v7.app.*
 import android.text.*
 import android.text.method.*
-import android.webkit.*
 import android.widget.*
 import io.ktor.common.client.*
-import io.ktor.common.client.http.URLProtocol
-import io.ktor.http.*
+import io.ktor.common.client.http.*
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.*
 
@@ -26,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         promise {
             client.request {
                 url.apply {
-                    protocol = URLProtocol.HTTP
+                    protocol = URLProtocol.HTTPS
+                    port = 443
                     host = "kotlinlang.org"
                 }
             }

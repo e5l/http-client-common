@@ -44,6 +44,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5'
     implementation "io.ktor.common.client:jvm:$http_client_version"
+    implementation "io.ktor:ktor-client-cio:$ktor_version"
 }
 kotlin {
     experimental {

@@ -50,6 +50,7 @@ prepareMochaChrome.doLast {
 });</script>
 <script src="$projectDir/node_modules/kotlin/kotlin.js"></script>
 <script src="$projectDir/node_modules/kotlin-test/kotlin-test.js"></script>
+<script src="$projectDir/node_modules/kotlinx-atomicfu/kotlinx-atomicfu.js"></script>
 <script src="$projectDir/node_modules/kotlinx-coroutines-core/kotlinx-coroutines-core.js"></script>
 <script src="$compileKotlin2Js.outputFile"></script>
 <script src="$compileTestKotlin2Js.outputFile"></script>
