@@ -1,3 +1,23 @@
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "JetBrains"
+            name "JetBrains Team"
+            organization "JetBrains"
+            organizationUrl "http://www.jetbrains.com"
+        }
+    }
+    scm {
+        url "https://github.com/e5l/http-client-common"
+    }
+}
 
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
@@ -29,6 +49,18 @@ publishing {
     }
 }
 
-bintrayUpload.doFirst{
+afterEvaluate {
+    project.publishing.publications.forEach { publication ->
+        publication.pom.withXml {
+            def root = asNode()
+            root.appendNode('name', project.name)
+            root.appendNode('description', 'Kotlin multiplatform http-client')
+            root.appendNode('url', 'https://github.com/e5l/http-client-common')
+            root.children().last() + pomConfig
+        }
+    }
+}
+
+bintrayUpload.doFirst {
     publications = project.publishing.publications
 }
