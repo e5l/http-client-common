@@ -1,6 +1,5 @@
 package io.ktor.common.client
 
-import kotlinx.cinterop.*
 import platform.Foundation.*
 import kotlin.coroutines.experimental.*
 
@@ -15,12 +14,12 @@ actual class HttpClient actual constructor() : Closeable {
             }
 
             override fun URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError: NSError?) {
-                val rawResponse = task.response
-                if (rawResponse == null || didCompleteWithError != null) {
-                    return
-                }
+                val rawResponse = task.response ?: return
+                if (didCompleteWithError != null) return
 
                 val responseData = rawResponse as NSHTTPURLResponse
+
+                @Suppress("UNCHECKED_CAST")
                 val headersDict = responseData.allHeaderFields as Map<String, String>
 
                 val response = HttpResponseBuilder(request).apply {
@@ -37,9 +36,8 @@ actual class HttpClient actual constructor() : Closeable {
         }
 
         val session = NSURLSession.sessionWithConfiguration(
-                NSURLSessionConfiguration.defaultSessionConfiguration(),
-                delegate,
-                delegateQueue = NSOperationQueue.mainQueue()
+            NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate, delegateQueue = NSOperationQueue.mainQueue()
         )
 
         val URLString = request.url.build()
