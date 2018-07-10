@@ -48,7 +48,7 @@ dependencies {
 ```
 
 ```groovy
-// enable gradle metadata in gradle.properties
+// enable gradle metadata in settings.gradle
 enableFeaturePreview('GRADLE_METADATA')
 ```
 
