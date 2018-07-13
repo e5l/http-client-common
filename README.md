@@ -20,12 +20,12 @@ promise {
 
 ## Dependencies
 
-1. Kotlin native compiler version: 0.8-dev-2701
+1. Kotlin native compiler version: 0.8
 
 ### Gradle
 ```groovy
 buildscript {
-    ext.http_client_version = '0.1.14'
+    ext.http_client_version = '0.1.15'
 }
 
 repositories {
