@@ -1,4 +1,12 @@
 # http-client-common
+
+## *DEPRECATION NOTICE*
+This repository is outdated. Multiplatform client is included in [ktor](http://ktor.io) from version from `0.9.4-alpha-2`.
+
+Updated samples located here: https://github.com/ktorio/ktor-samples/tree/mpp-client/mpp/client-mpp
+
+## Description
+
 Kotlin multiplatform http client
 
 ```kotlin
